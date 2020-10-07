@@ -6,7 +6,6 @@ from werkzeug.security import generate_password_hash
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///main.db'
 db = SQLAlchemy(app)
 import random
-
 class Article(db.Model): 
        __tablename__ = 'article'
        id     = db.Column(db.Integer, primary_key=True)
@@ -17,11 +16,9 @@ class Article(db.Model):
            self.title = title
            self.slug = f'{title}-{random.random()}'.replace(' ', '-').replace(':','-')
            self.content_text = content_text
-
        def __repr__(self):
         return '<Article {},{},{} >'.format(self.slug,
             self.content_text,self.title)
-
 class UserManajement(db.Model):
       id       = db.Column(db.Integer, primary_key=True)
       username = db.Column(db.String(50), unique=1)
@@ -33,7 +30,6 @@ class UserManajement(db.Model):
           self.username = str(username).lower()
       def __repr__(self):
           return "<UserManajement {},{}>".format(self.username, self.password)
-
 ma = Marshmallow(app)
 class AricleSeriallizer(ma.SQLAlchemyAutoSchema):
     class Meta:
@@ -42,7 +38,6 @@ class AricleSeriallizer(ma.SQLAlchemyAutoSchema):
 class UserSerial(ma.SQLAlchemyAutoSchema):
     class Meta:
         fields = ['username', 'role_id']
-
 
 @app.cli.command("migrate")
 @click.argument("name")
