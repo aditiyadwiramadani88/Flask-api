@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "c:\\Myproject\\project\\Flask_Project\\Env\\Scripts\\python.exe",
+    "python.formatting.provider": "black"
+}
