@@ -6,8 +6,6 @@ app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address, get_ipaddr
 
-
-
 jwt = JWTManager(app)
 blacklist = set()
 limiter = Limiter(key_func=get_remote_address)
@@ -16,7 +14,6 @@ limiter.init_app(app)
 def check_if_token_in_blacklist(decrypted_token):
     jti = decrypted_token['jti']
     return jti in blacklist
-
 
 @app.errorhandler(429)
 def ratelimit_handler(e):
